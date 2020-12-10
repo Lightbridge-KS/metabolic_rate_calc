@@ -8,8 +8,10 @@ library(pins)
 
 # Register   ----------------------------------------------------------------
 
+
 board_register_github(repo = "Lightbridge-AI/met-calc-heroku-data", 
-                      token = "247f98ada4916fd662e544ed8e3ae5ca5b19d36f")
+                      token = t)
+
 
 # Functions ---------------------------------------------------------------
 
