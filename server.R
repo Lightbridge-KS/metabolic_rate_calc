@@ -6,7 +6,7 @@ library(dplyr)
 library(purrr)
 library(pins)
 
-# Register ----------------------------------------------------------------
+# Register   ----------------------------------------------------------------
 
 board_register_github(repo = "Lightbridge-AI/met-calc-heroku-data", 
                       token = "fee1c77140c0c12cb7c70bd385ff066410448f37")
