@@ -1,6 +1,7 @@
 # Metabolic rate calculator v2
 
 library(shiny)
+library(shinythemes)
 library(dplyr)
 library(purrr)
 library(pins)
