@@ -9,7 +9,7 @@ library(pins)
 # Register ----------------------------------------------------------------
 
 board_register_github(repo = "Lightbridge-AI/Met_calc_data", 
-                      token = "e661be23c69b3194e3b7ec480d9a6ab7114dd693")
+                      token = "02433e0c4182cd23b7c90c4aaa5a9dac5e72fbda")
 
 # Functions ---------------------------------------------------------------
 
