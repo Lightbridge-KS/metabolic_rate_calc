@@ -5,10 +5,13 @@ library(shinythemes)
 library(dplyr)
 library(purrr)
 library(pins)
+library(openxlsx)
 
-# Register   ----------------------------------------------------------------
+# Register ----------------------------------------------------------------
 
-t <- paste0("3a3b43f1a","267f8f43d20bd2b1512e46f0207d3f2")
+## Must surgery this API key before commit to github
+
+t <- paste0("3a3b43f1a","267f8f43d20bd2b1512e46f0207d3f2") 
 
 board_register_github(repo = "Lightbridge-AI/met-calc-heroku-data", 
                       token = t)
