@@ -5,7 +5,8 @@ library(shinythemes)
 library(dplyr)
 library(purrr)
 library(pins)
-library(openxlsx)
+library(rmarkdown)
+library(knitr)
 
 # Register ----------------------------------------------------------------
 
@@ -293,5 +294,35 @@ server <- function(input, output, session) {
     }
   )
   
+  output$download_2 <- downloadHandler(
+    # For PDF output, change this to "report.pdf"
+    filename = "report.doc",
+    content = function(file) {
+      # Copy the report file to a temporary directory before processing it, in
+      # case we don't have write permissions to the current working dir (which
+      # can happen when deployed).
+      tempReport <- file.path(tempdir(), "report.Rmd")
+      file.copy("report.Rmd", tempReport, overwrite = TRUE)
+      
+      # Set up parameters to pass to Rmd document
+      params <- list(x = input$x , y = input$y , temp = input$temp,
+                     baro = input$baro , ht = input$ht , wt = input$wt,
+                     sex = input$sex , age = input$age , cal_eqi = input$cal_eqi ,
+                     oxycons_lph_atps = oxycons_lph_atps() , oxycons_lph_stpd = oxycons_lph_stpd(),
+                     stpd = stpd() , met_cal_p_hr = met_cal_p_hr() , bsa = bsa() , 
+                     met_cal_msq_hr = met_cal_msq_hr(),bmr = bmr(),
+                     met_percent = met_percent())
+      
+      # Knit the document, passing in the `params` list, and eval it in a
+      # child of the global environment (this isolates the code in the document
+      # from the code in this app).
+      rmarkdown::render(tempReport, output_file = file,
+                        params = params,
+                        envir = new.env(parent = globalenv())
+      )
+    }
+  )
+  
+  
+  
 }
-

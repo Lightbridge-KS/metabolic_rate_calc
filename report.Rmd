@@ -1,0 +1,70 @@
+---
+title: "Metabolic rate & Oxygen consumption report"
+author: "By : Harvard spirometer"
+date: "`r Sys.Date()`"
+output: word_document
+params: 
+  x: NA
+  y: NA
+  temp: NA
+  baro: NA
+  ht: NA
+  wt: NA
+  sex: "Male"
+  age: NA
+  cal_eqi: 4.825
+  oxycons_lph_atps: NA
+  oxycons_lph_stpd: NA
+  stpd: NA
+  met_cal_p_hr: NA
+  met_cal_msq_hr: NA
+  bsa: NA
+  bmr: NA
+  met_percent: NA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(knitr)
+```
+
+## Subject's information
+
+* Gender : `r params$sex`
+* Age : `r params$age` yrs 
+* Height : `r params$ht` cm
+* Weight : `r params$wt` kg
+
+* Calculated BSA : `r round(params$bsa , digits=3)` m^2^ (using DuBois formula) 
+* Predicted basal metabolic rate (BMR standard) = `r round(params$bmr, digits=3)` Cal/m^2^/hr
+
+## Environmental conditions
+
+* Barometric pressure : `r params$baro` mmHg
+* Average spirometer temperature : `r params$temp` ˚c
+* STPD correction factor : `r round(params$stpd, digits=3)` 
+
+# Calculation
+
+* X = `r params$x` mm , Y = `r params$y` mm
+* X-axis (Paper speed) = 25 mm/min , Y-axis : 1 mm = 30 mL
+
+## Oxygen consumption ( $\dot{V}_{O_2}$ )
+* During `r params$x /25` minute, O~2~ was consumed `r params$y * 30` mL.
+* $\dot{V}_{O_2}$ (ATPS) = `r round(params$oxycons_lph_atps, digits=3) ` L/hr
+* $\dot{V}_{O_2}$ (STPD) = `r round(params$oxycons_lph_stpd, digits=3)` L/hr
+
+## Metabolic rate
+* Caloric equivalent of O~2~ = `r params$cal_eqi` Cal/L
+
+Metabolic rate(Cal/hr) = $\dot{V}_{O_2}$ (STPD) (L/hr) $\times$ Caloric equivalent of O~2~ (Cal/L)
+
+* Metabolic rate = `r round(params$met_cal_p_hr, digits=3)` Cal/hr
+* Metabolic rate = `r round(params$met_cal_msq_hr, digits=3)` Cal/m^2^/hr
+* Metabolic rate / BMR standard = `r round(params$met_percent, digits=3)` %
+
+
+
+
+

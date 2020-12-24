@@ -5,7 +5,8 @@ library(shinythemes)
 library(dplyr)
 library(purrr)
 library(pins)
-library(openxlsx)
+library(rmarkdown)
+library(knitr)
 
 # UI ----------------------------------------------------------------------
 
@@ -72,8 +73,14 @@ ui <- fluidPage(
                  br(),
                  dataTableOutput("table"),
                  fluidRow(
-                   column(width = 12, downloadButton("download", "Download .xlsx",class = "btn-block"))
+                   column(6, 
+                          downloadButton("download", "Download .xlsx",class = "btn-block")
+                   ),
+                   column(6, 
+                          downloadButton("download_2", "Download .doc",class = "btn-block")
+                   )      
                  )
+                 
         ),
         tabPanel("Formular",
                  img(src = "formular.png",width = 697,height = 381),
